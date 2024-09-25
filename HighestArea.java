@@ -25,6 +25,7 @@ class Solution {
 
     private static int getMax(int heights[],Stack<Integer> stack,int max,int i)
     {
+        
         int area;
         int popped=stack.pop();
         if(stack.isEmpty())
