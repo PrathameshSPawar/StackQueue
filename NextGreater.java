@@ -1,22 +1,23 @@
-public class Solution {
-    public ArrayList<Integer> nextGreater(ArrayList<Integer> A) {
-        ArrayList<Integer> ans=new ArrayList<>();
-        Stack<Integer> stack=new Stack();
-        int n=A.size();
-        for(int i=n-1;i>=0;i--)
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n=nums.length;
+        int ans[]=new int[n];
+        Stack<Integer> stack=new Stack<>();
+        for(int i= (2*n)-1;i>=0;i--)
         {
-            while(!stack.isEmpty() && stack.peek()<=A.get(i))
-            {
+            int current=nums[i%n];
+            while(!stack.isEmpty() && stack.peek()<=current){
                 stack.pop();
             }
-            
-            if(stack.isEmpty()){
-                ans.add(0,-1);
-            }else{
-                ans.add(0,stack.peek());
+
+            if(stack.isEmpty() && i<n){
+                ans[i]=-1;
             }
             
-            stack.push(A.get(i));
+            if (!stack.isEmpty() && i < n)
+                ans[i]= stack.peek();
+
+            stack.push(current);
         }
         return ans;
     }
